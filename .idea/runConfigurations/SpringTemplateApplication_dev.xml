@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="SpringTemplateApplication dev" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="spring-boot-template.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="io.github.astrapi69.template.SpringTemplateApplication" />
+    <option name="ACTIVE_PROFILES" value="dev" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

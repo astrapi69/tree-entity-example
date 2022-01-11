@@ -1,0 +1,65 @@
+#
+name: spring-boot-template
+environment: dev
+
+logging:
+  level:
+    .: debug
+    org.springframework: DEBUG
+    org.hibernate:
+      SQL: DEBUG
+      type.descriptor.sql: trace
+  file:
+    name: ${HOME}/logs/spring-boot-template.log
+
+server:
+  port: 5000
+
+app:
+  name: ${name}
+  printing-mode-on: false
+  base-package: io.github.astrapi69.template
+  api-info-title: template REST API
+  api-info-description: REST API template description
+  contact-name: template inc.
+  contact-url: www.template.org
+  dir: ${user.home}/.${app.name}
+  db-name: template
+  db-host: localhost
+  db-port: 5432
+  db-username: postgres
+  db-password: postgres
+  db-url-prefix: jdbc:postgresql://
+
+spring:
+  main:
+    allow-bean-definition-overriding: false
+  datasource:
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: ${app.db-url-prefix}${app.db-host}:${app.db-port}/${app.db-name}
+    initialization-mode: never
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: create
+      show_sql: true
+      use_sql_comments: true
+      format_sql: true
+      generate_statistics: false
+
+  flyway:
+    enabled: false
+    baseline-on-migrate: true
+  config:
+    activate:
+      on-profile: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

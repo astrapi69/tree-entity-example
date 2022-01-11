@@ -1,0 +1,16 @@
+#
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  application:
+    admin:
+      enabled: false
+      jmx-name: org.springframework.boot:type=Admin,name=SpringTemplateApplication
+
+app:
+  db-name: template
+  db-host: localhost
+  db-port: 5432
+  db-username: postgres
+  db-password: postgres
