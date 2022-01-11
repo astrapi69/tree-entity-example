@@ -1,11 +1,11 @@
 package io.github.astrapi69.treentity.config;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Getter
 @Setter

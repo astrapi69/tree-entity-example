@@ -2,9 +2,11 @@ package io.github.astrapi69.treentity.enums;
 
 public enum ApplicationHeaderKeyNames
 {
-	DEFAULT_TOKEN_ISSUER_VALUE(ApplicationHeaderKeyNames.DEFAULT_TOKEN_ISSUER),
-	HEADER_KEY_ROLES_VALUE(ApplicationHeaderKeyNames.HEADER_KEY_ROLES),
-	DEFAULT_TOKEN_AUDIENCE_VALUE(ApplicationHeaderKeyNames.DEFAULT_TOKEN_AUDIENCE);
+	DEFAULT_TOKEN_ISSUER_VALUE(
+		ApplicationHeaderKeyNames.DEFAULT_TOKEN_ISSUER), HEADER_KEY_ROLES_VALUE(
+			ApplicationHeaderKeyNames.HEADER_KEY_ROLES), DEFAULT_TOKEN_AUDIENCE_VALUE(
+				ApplicationHeaderKeyNames.DEFAULT_TOKEN_AUDIENCE);
+
 	public static final String DEFAULT_TOKEN_ISSUER = "user-auth-api";
 	public static final String DEFAULT_TOKEN_AUDIENCE = "user-auth-app";
 	public static final String HEADER_KEY_ROLES = "u-roles";

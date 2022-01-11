@@ -1,15 +1,17 @@
 package io.github.astrapi69.treentity.jpa.repository;
 
-import io.github.astrapi69.treentity.integration.AbstractIntegrationTest;
-import io.github.astrapi69.treentity.jpa.entity.MenuItems;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
-class MenuItemsRepositoryTest extends AbstractIntegrationTest
+import io.github.astrapi69.treentity.integration.AbstractIntegrationTest;
+import io.github.astrapi69.treentity.jpa.entity.MenuItems;
+
+public class MenuItemsRepositoryTest extends AbstractIntegrationTest
 {
 
 	@Autowired
@@ -20,12 +22,11 @@ class MenuItemsRepositoryTest extends AbstractIntegrationTest
 	{
 		String value;
 		value = "New";
-		MenuItems root = MenuItems.builder().parent(null).depth(0).node(true)
-			.value(value).build();
+		MenuItems root = MenuItems.builder().parent(null).depth(0).node(true).value(value).build();
 
 		value = "JPA";
-		MenuItems newJpa = MenuItems.builder().parent(root).value(value)
-			.node(true).depth(1).build();
+		MenuItems newJpa = MenuItems.builder().parent(root).value(value).node(true).depth(1)
+			.build();
 
 		MenuItems savedRoot = repository.save(root);
 		MenuItems savedNewJpa = repository.save(newJpa);
@@ -40,8 +41,8 @@ class MenuItemsRepositoryTest extends AbstractIntegrationTest
 		assertEquals(savedRoot, parent);
 
 		value = "Project";
-		MenuItems newProject = MenuItems.builder().parent(root).value(value)
-			.node(true).depth(1).build();
+		MenuItems newProject = MenuItems.builder().parent(root).value(value).node(true).depth(1)
+			.build();
 		MenuItems savedNewProject = repository.save(newProject);
 
 		List<MenuItems> ancestors = repository.findAncestors(newProject.getId());

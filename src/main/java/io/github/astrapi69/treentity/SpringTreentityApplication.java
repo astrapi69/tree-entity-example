@@ -1,8 +1,7 @@
 package io.github.astrapi69.treentity;
 
-import io.github.astrapi69.treentity.config.ApplicationConfiguration;
-import io.github.astrapi69.treentity.config.ApplicationProperties;
-import io.github.astrapi69.treentity.config.SwaggerConfiguration;
+import java.util.Arrays;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +11,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import java.util.Arrays;
+import io.github.astrapi69.treentity.config.ApplicationConfiguration;
+import io.github.astrapi69.treentity.config.ApplicationProperties;
+import io.github.astrapi69.treentity.config.SwaggerConfiguration;
 
 @EnableTransactionManagement
 @Import({ ApplicationConfiguration.class, SwaggerConfiguration.class })
@@ -21,7 +22,8 @@ import java.util.Arrays;
 public class SpringTreentityApplication
 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		SpringApplication application = new SpringApplication(SpringTreentityApplication.class);
 		application.run(args);
 	}
@@ -31,7 +33,8 @@ public class SpringTreentityApplication
 	{
 		return args -> {
 			ApplicationProperties applicationProperties = ctx.getBean(ApplicationProperties.class);
-			if(applicationProperties.isPrintingModeOn()){
+			if (applicationProperties.isPrintingModeOn())
+			{
 				System.out.println("Let's inspect the beans provided by Spring Boot:");
 				String[] beanNames = ctx.getBeanDefinitionNames();
 				Arrays.stream(beanNames).sorted().forEach(System.out::println);

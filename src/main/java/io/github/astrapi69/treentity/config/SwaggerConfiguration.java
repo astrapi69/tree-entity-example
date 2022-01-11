@@ -1,6 +1,7 @@
 package io.github.astrapi69.treentity.config;
 
 import lombok.AllArgsConstructor;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,7 +17,8 @@ public class SwaggerConfiguration extends AbstractSwaggerConfiguration
 
 	ApplicationProperties applicationProperties;
 
-	@Bean public Docket api()
+	@Bean
+	public Docket api()
 	{
 		return super.api();
 	}
@@ -26,37 +28,44 @@ public class SwaggerConfiguration extends AbstractSwaggerConfiguration
 		return super.metaData();
 	}
 
-	@Override public String getBasePackage()
+	@Override
+	public String getBasePackage()
 	{
 		return applicationProperties.getBasePackage();
 	}
 
-	@Override public String getApiInfoTitle()
+	@Override
+	public String getApiInfoTitle()
 	{
 		return applicationProperties.getApiInfoTitle();
 	}
 
-	@Override public String getApiInfoDescription()
+	@Override
+	public String getApiInfoDescription()
 	{
 		return applicationProperties.getApiInfoDescription();
 	}
 
-	@Override public String getApiInfoVersion()
+	@Override
+	public String getApiInfoVersion()
 	{
 		return ApplicationConfiguration.VERSION_API_1;
 	}
 
-	@Override public String getContactName()
+	@Override
+	public String getContactName()
 	{
 		return applicationProperties.getContactName();
 	}
 
-	@Override public String getContactUrl()
+	@Override
+	public String getContactUrl()
 	{
 		return applicationProperties.getContactUrl();
 	}
 
-	@Override public String getDocketPathsPathRegex()
+	@Override
+	public String getDocketPathsPathRegex()
 	{
 		return ApplicationConfiguration.REST_VERSION + "/.*|";
 	}
