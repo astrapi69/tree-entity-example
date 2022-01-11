@@ -6,10 +6,10 @@ spring:
   application:
     admin:
       enabled: false
-      jmx-name: org.springframework.boot:type=Admin,name=SpringTemplateApplication
+      jmx-name: org.springframework.boot:type=Admin,name=SpringTreentityApplication
 
 app:
-  db-name: template
+  db-name: treentity
   db-host: localhost
   db-port: 5432
   db-username: postgres

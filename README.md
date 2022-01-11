@@ -1,2 +1,3 @@
-# spring-boot-template
-template project for start with spring-boot project
+# tree-entity-example
+
+Simple project for show case a tree enity with jpa

@@ -1,5 +1,5 @@
 #
-name: spring-boot-template
+name: spring-boot-treentity
 environment: dev
 
 logging:
@@ -10,7 +10,7 @@ logging:
       SQL: DEBUG
       type.descriptor.sql: trace
   file:
-    name: ${HOME}/logs/spring-boot-template.log
+    name: ${HOME}/logs/spring-boot-treentity.log
 
 server:
   port: 5000
@@ -18,13 +18,13 @@ server:
 app:
   name: ${name}
   printing-mode-on: false
-  base-package: io.github.astrapi69.template
-  api-info-title: template REST API
-  api-info-description: REST API template description
-  contact-name: template inc.
-  contact-url: www.template.org
+  base-package: io.github.astrapi69.treentity
+  api-info-title: treentity REST API
+  api-info-description: REST API treentity description
+  contact-name: treentity inc.
+  contact-url: www.treentity.org
   dir: ${user.home}/.${app.name}
-  db-name: template
+  db-name: treentity
   db-host: localhost
   db-port: 5432
   db-username: postgres
@@ -55,7 +55,7 @@ spring:
       generate_statistics: false
 
   flyway:
-    enabled: false
+    enabled: true
     baseline-on-migrate: true
   config:
     activate:

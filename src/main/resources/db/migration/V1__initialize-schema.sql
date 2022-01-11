@@ -16,10 +16,16 @@ create table if not exists flyway_schema_history
 
 create index if not exists flyway_schema_history_s_idx
     on flyway_schema_history (success);
-create table if not exists templates
+
+create table if not exists menu_items
 (
-    id   uuid not null
-        constraint templates_pkey
+    id        uuid not null
+        constraint menu_items_pkey
             primary key,
-    name varchar(128)
+    depth     integer,
+    node      boolean,
+    value     text,
+    parent_id uuid
+        constraint fk_treeable_parent_id
+            references menu_items
 );
