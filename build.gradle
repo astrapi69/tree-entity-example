@@ -1,3 +1,6 @@
+group = "$groupPackage" as Object
+version = "$projectVersion" as Object
+description = "$rootProject.name"
 
 buildscript {
 
@@ -12,7 +15,6 @@ buildscript {
 		classpath "io.spring.gradle:dependency-management-plugin:$springGradlePluginDependencyManagementVersion"
 		classpath "com.github.ben-manes:gradle-versions-plugin:$gradlePluginVersionsVersion"
 		classpath "gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin:$licenseGradlePluginVersion"
-		classpath "net.ltgt.gradle:gradle-apt-plugin:$gradleAptPluginVersion"
 	}
 }
 
@@ -28,10 +30,7 @@ apply plugin: "idea"
 apply plugin: "com.github.ben-manes.versions"
 apply plugin: "com.github.hierynomus.license"
 
-group = "$groupPackage"
-version = "$projectVersion"
-description = "$rootProject.name"
-sourceCompatibility = "$projectSourceCompatibility"
+sourceCompatibility = "$projectSourceCompatibility" as Object
 
 repositories {
 	mavenLocal()
@@ -121,25 +120,11 @@ dependencies {
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	implementation("io.github.astrapi69:bean-mapper-api:$beanMapperApiVersion")
 	implementation("io.github.astrapi69:generic-mapper:$genericMapperVersion")
-	implementation("io.github.astrapi69:file-worker:$fileWorkerVersion")
-	implementation("io.github.astrapi69:spring-boot-extensions:$springBootExtensionsVersion")
-	implementation("io.github.astrapi69:json-extensions:$jsonExtensionsVersion")
 	implementation("io.github.astrapi69:ent-api:$entApiVersion")
 	implementation("io.github.astrapi69:ent-core:$entCoreVersion")
-	implementation("io.github.astrapi69:throw-able:$throwAbleVersion")
 	implementation("io.github.astrapi69:spring-tool-extensions:$springToolExtensionsVersion")
-	implementation("io.jsonwebtoken:jjwt-api:$jjwtVersion")
-	implementation("io.jsonwebtoken:jjwt-impl:$jjwtVersion")
-	implementation("io.jsonwebtoken:jjwt-jackson:$jjwtVersion")
-	implementation("de.alpharogroup:auth-api:$authApiVersion")
-	implementation("de.alpharogroup:auth:$authVersion")
-	implementation("de.alpharogroup:mystic-crypt:$mysticCryptVersion")
-	implementation("de.alpharogroup:pg-enum-usertype:$pgEnumUsertypeVersion")
-	implementation("com.vladmihalcea:hibernate-types-52:$vladmihalceaHibernateTypes52Version")
-	implementation("io.github.astrapi69:servlet-kt-extensions:$servletKtExtensionsVersion")
 	implementation("io.springfox:springfox-swagger2:$springfoxSwaggerVersion")
 	implementation("io.springfox:springfox-swagger-ui:$springfoxSwaggerVersion")
-	implementation("com.thoughtworks.xstream:xstream:$xstreamVersion")
 	implementation("org.postgresql:postgresql")
 	implementation("org.flywaydb:flyway-core")
 	implementation("org.springframework:spring-oxm")
@@ -151,9 +136,6 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	testImplementation("org.testcontainers:testcontainers:$testcontainersVersion")
 	testImplementation("org.testcontainers:postgresql:$testcontainersVersion")
-	testImplementation("de.alpharogroup:jobj-contract-verifier:$jobjContractVerifierVersion")
-	testImplementation("io.github.astrapi69:gradle-migration-data:$gradleMigrationDataVersion")
-	testImplementation("io.github.astrapi69:silly-io:$sillyIoVersion")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testCompileOnly("org.projectlombok:lombok:$lombokVersion")
 	testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
