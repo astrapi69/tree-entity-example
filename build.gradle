@@ -22,10 +22,7 @@ apply plugin: "io.freefair.lombok"
 apply plugin: "org.springframework.boot"
 apply plugin: "io.spring.dependency-management"
 apply plugin: "java"
-apply plugin: "maven-publish"
-apply plugin: "signing"
 apply plugin: "jacoco"
-apply plugin: "eclipse"
 apply plugin: "idea"
 apply plugin: "com.github.ben-manes.versions"
 apply plugin: "com.github.hierynomus.license"
@@ -48,6 +45,7 @@ tasks.withType(JavaCompile) {
 license {
 	ext.year="2020"
 	ext.owner="Asterios Raptis"
+	ignoreFailures = true
 	header rootProject.file("src/main/resources/LICENSE.txt")
 	excludes(["**/README",
 			  "**/README.md",
@@ -94,16 +92,6 @@ task javadocJar(type: Jar) {
 	javadoc.properties.failOnError = true
 }
 
-def releaseVersion = !version.endsWith("SNAPSHOT")
-
-publishing {
-	publications {
-		maven(MavenPublication) {
-			from(components.java)
-		}
-	}
-}
-
 javadoc {
 	if(JavaVersion.current().isJava9Compatible()) {
 		options.addBooleanOption("html5", true)
@@ -120,7 +108,7 @@ dependencies {
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	implementation("io.github.astrapi69:bean-mapper-api:$beanMapperApiVersion")
 	implementation("io.github.astrapi69:generic-mapper:$genericMapperVersion")
-	implementation("io.github.astrapi69:ent-api:$entApiVersion")
+	implementation("io.github.astrapi69:data-api:$dataApiVersion")
 	implementation("io.github.astrapi69:ent-core:$entCoreVersion")
 	implementation("io.github.astrapi69:spring-tool-extensions:$springToolExtensionsVersion")
 	implementation("io.springfox:springfox-swagger2:$springfoxSwaggerVersion")
