@@ -43,8 +43,8 @@ tasks.withType(JavaCompile) {
 }
 
 license {
-	ext.year="2020"
-	ext.owner="Asterios Raptis"
+	ext.year="$projectInceptionYear"
+	ext.owner="$projectLeaderName"
 	ignoreFailures = true
 	header rootProject.file("src/main/resources/LICENSE.txt")
 	excludes(["**/README",
@@ -70,6 +70,7 @@ license {
 			  "**/*.js.map",
 			  "**/*.tmpl",
 			  "**/*.js.tmpl",
+			  "**/*.yml",
 			  "**/*.editorconfig",
 			  "src/test/resources/**",
 			  "src/main/resources/**",
