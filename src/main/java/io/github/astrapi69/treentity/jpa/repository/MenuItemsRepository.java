@@ -53,6 +53,15 @@ public interface MenuItemsRepository extends JpaRepository<MenuItems, UUID>
 		@Param("value") String value, @Param("parent") MenuItems parent);
 
 	@Transactional
+	@Query("select entity from MenuItems entity where "
+		+ " entity.value=:value " + " and entity.parent=:parent")
+	List<MenuItems> findByValueAndParent(@Param("value") String value, @Param("parent") MenuItems parent);
+
+	@Transactional
+	@Query("select entity from MenuItems entity where entity.parent is null")
+	Optional<MenuItems> findRoot();
+
+	@Transactional
 	@Query("select entity from MenuItems entity where entity.value=:value "
 		+ " and entity.parent is null")
 	Optional<MenuItems> findRootByValue(@Param("value") String value);
