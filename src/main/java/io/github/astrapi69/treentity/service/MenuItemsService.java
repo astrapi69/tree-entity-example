@@ -26,14 +26,13 @@ package io.github.astrapi69.treentity.service;
 
 import java.util.List;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.experimental.FieldDefaults;
-
 import org.springframework.stereotype.Service;
 
 import io.github.astrapi69.treentity.jpa.entity.MenuItems;
 import io.github.astrapi69.treentity.jpa.repository.MenuItemsRepository;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 @Service
 @AllArgsConstructor

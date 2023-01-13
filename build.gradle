@@ -4,18 +4,20 @@ description = "$rootProject.name"
 
 buildscript {
 
-	repositories {
-		maven {
-			url "https://plugins.gradle.org/m2/"
-		}
-	}
-	dependencies {
-		classpath "io.freefair.gradle:lombok-plugin:$gradlePluginLombokVersion"
-		classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootGradlePluginVersion"
-		classpath "io.spring.gradle:dependency-management-plugin:$springGradlePluginDependencyManagementVersion"
-		classpath "com.github.ben-manes:gradle-versions-plugin:$gradlePluginVersionsVersion"
-		classpath "gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin:$licenseGradlePluginVersion"
-	}
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "io.freefair.gradle:lombok-plugin:$gradlePluginLombokVersion"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootGradlePluginVersion"
+        classpath "io.spring.gradle:dependency-management-plugin:$springGradlePluginDependencyManagementVersion"
+        classpath "com.github.ben-manes:gradle-versions-plugin:$gradlePluginVersionsVersion"
+        classpath "gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin:$licenseGradlePluginVersion"
+        classpath "org.ajoberstar.grgit:grgit-gradle:$grgitGradlePluginVersion"
+        classpath "com.diffplug.spotless:spotless-plugin-gradle:$spotlessGradlePluginVersion"
+    }
 }
 
 apply plugin: "io.freefair.lombok"
@@ -26,106 +28,23 @@ apply plugin: "jacoco"
 apply plugin: "idea"
 apply plugin: "com.github.ben-manes.versions"
 apply plugin: "com.github.hierynomus.license"
+apply plugin: "org.ajoberstar.grgit"
+apply plugin: "com.diffplug.spotless"
+// import gradle files
+apply from: "gradle/dependencies.gradle"
+apply from: "gradle/formatting.gradle"
+apply from: "gradle/grgit.gradle"
+apply from: "gradle/licensing.gradle"
+apply from: "gradle/packaging.gradle"
+apply from: "gradle/repositories.gradle"
+apply from: "gradle/testing.gradle"
 
 sourceCompatibility = "$projectSourceCompatibility" as Object
 
-repositories {
-	mavenLocal()
-	mavenCentral()
-}
-
 tasks.withType(JavaCompile) {
-	options.encoding = "UTF-8"
-	// uncomment the next line for build with compiler argument -Xlint:deprecation
-	// options.compilerArgs << "-Xlint:deprecation"
-	// uncomment the next line for build with compiler argument -Xlint:unchecked
-	// options.compilerArgs << "-Xlint:unchecked"
-}
-
-license {
-	ext.year="$projectInceptionYear"
-	ext.owner="$projectLeaderName"
-	ignoreFailures = true
-	header rootProject.file("src/main/resources/LICENSE.txt")
-	excludes(["**/README",
-			  "**/README.md",
-			  "**/LICENSE",
-			  "**/NOTICE",
-			  "**/*.xml",
-			  "**/*.xsl",
-			  "**/*.xsd",
-			  "**/*.dtd",
-			  "**/*.html",
-			  "**/*.jsp",
-			  "**/*.jpa",
-			  "**/*.sql",
-			  "**/*.properties",
-			  "**/*.bat",
-			  "**/*.gradle",
-			  "**/*.MF",
-			  "**/*.txt",
-			  "**/*.vm",
-			  "**/*.log",
-			  "**/*.map",
-			  "**/*.js.map",
-			  "**/*.tmpl",
-			  "**/*.js.tmpl",
-			  "**/*.yml",
-			  "**/*.editorconfig",
-			  "src/test/resources/**",
-			  "src/main/resources/**",
-			  "out/**",
-			  "build/**"])
-}
-
-// workhack for license issue #76
-gradle.startParameter.excludedTaskNames += "licenseMain"
-gradle.startParameter.excludedTaskNames += "licenseTest"
-
-task sourcesJar(type: Jar) {
-	archiveClassifier.set("sources")
-	from(sourceSets.main.allJava)
-}
-
-task javadocJar(type: Jar) {
-	from javadoc
-	archiveClassifier.set("javadoc")
-	javadoc.properties.failOnError = true
-}
-
-javadoc {
-	if(JavaVersion.current().isJava9Compatible()) {
-		options.addBooleanOption("html5", true)
-	}
-}
-
-test {
-	useJUnitPlatform()
-}
-
-dependencies {
-	compileOnly("org.projectlombok:lombok:$lombokVersion")
-	annotationProcessor("org.projectlombok:lombok:$lombokVersion")
-	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-	implementation("io.github.astrapi69:bean-mapper-api:$beanMapperApiVersion")
-	implementation("io.github.astrapi69:generic-mapper:$genericMapperVersion")
-	implementation("io.github.astrapi69:data-api:$dataApiVersion")
-	implementation("io.github.astrapi69:ent-core:$entCoreVersion")
-	implementation("io.github.astrapi69:spring-tool-extensions:$springToolExtensionsVersion")
-	implementation("io.springfox:springfox-swagger2:$springfoxSwaggerVersion")
-	implementation("io.springfox:springfox-swagger-ui:$springfoxSwaggerVersion")
-	implementation("org.postgresql:postgresql")
-	implementation("org.flywaydb:flyway-core")
-	implementation("org.springframework:spring-oxm")
-	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-configuration-processor")
-	implementation("org.springframework.boot:spring-boot-starter-aop")
-	implementation("org.springframework.boot:spring-boot-starter-actuator")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-validation")
-	testImplementation("org.testcontainers:testcontainers:$testcontainersVersion")
-	testImplementation("org.testcontainers:postgresql:$testcontainersVersion")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testCompileOnly("org.projectlombok:lombok:$lombokVersion")
-	testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    options.encoding = "UTF-8"
+    // uncomment the next line for build with compiler argument -Xlint:deprecation
+    // options.compilerArgs << "-Xlint:deprecation"
+    // uncomment the next line for build with compiler argument -Xlint:unchecked
+    // options.compilerArgs << "-Xlint:unchecked"
 }
